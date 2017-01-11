@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+    <script src="node_modules/react/dist/react.js"></script>
+    <script src="node_modules/react-dom/dist/react-dom.js"></script>
+    <script src="node_modules/babel-standalone/babel.js"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script type="text/babel">
+    class Time extends React.Component {
+        constructor(){
+            super();
+            this.state={time:0};
+        }
+        componentWillMount(){
+            console.log("组件即将装配到页面当中")
+        }
+        render(){
+            console.log("组件正在装配到页面当中")
+            return <div>{this.state.time}</div>
+        }
+        componentDidMount() {
+            var num=0;
+            var that=this;
+            this.interval=setInterval(function(){
+                num++;
+                that.setState({time:num});
+            },1000);
+            console.log("组件已经装配到页面当中")
+        }
+    }
+    ReactDOM.render(<Time/>, document.getElementById("root"))
+</script>
+</html>
